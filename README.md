@@ -14,3 +14,6 @@ pip install -r requirements.txt
 
 ## Prototipo
 https://claude.ai/artifact/VwdutNBTpbz1WL5MyweDZz
+
+## Video Hito 2
+https://youtu.be/_z1KGsW4crA?si=h9U9kXff_YFIHGVO

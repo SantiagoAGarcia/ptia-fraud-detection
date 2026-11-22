@@ -1,0 +1,1160 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Billetera Segura IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
+<style>
+
+:root{
+  --k:#0b0b0b;          
+  --w:#f3f3f1;          
+  --paper:#efeeea;      
+  --g:#62625f;          
+  --rail:58px; --bar:58px;
+  --f-sans:"Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "Courier New", monospace;
+  --ease:cubic-bezier(.77,0,.175,1);
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body.dark{background:var(--k)}
+body{background:var(--w);color:var(--k);font-family:var(--f-sans);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+[tabindex="-1"]:focus{outline:none}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.frame{position:fixed;inset:0;z-index:40;pointer-events:none;color:#fff;mix-blend-mode:difference}
+.frame .ln{position:absolute;background:#fff}
+.frame .lt{left:10px;right:10px;top:10px;height:1px}.frame .lb2{left:10px;right:10px;bottom:10px;height:1px}.frame .ll{top:10px;bottom:10px;left:10px;width:1px}.frame .lr{top:10px;bottom:10px;right:10px;width:1px}
+.frame .railline{position:absolute;top:10px;bottom:10px;left:calc(10px + var(--rail));border-left:1px solid #fff}
+.frame .barline{position:absolute;left:10px;right:10px;top:calc(10px + var(--bar));border-top:1px solid #fff}
+.frame .logo{position:absolute;left:10px;top:10px;width:var(--rail);height:var(--bar);display:grid;place-items:center;pointer-events:auto;text-decoration:none}
+.frame .logo span{width:30px;height:30px;border:1.5px solid #fff;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:10.5px}
+.frame nav{position:absolute;left:calc(10px + var(--rail) + 22px);right:22px;top:10px;height:var(--bar);display:flex;align-items:center;gap:26px;pointer-events:auto}
+.frame nav a{text-decoration:none;font-size:13px;font-weight:600;display:grid;line-height:1.1;position:relative;padding-block:6px}
+.frame nav a small{font-family:var(--f-mono);font-size:9.5px;font-weight:400;opacity:.8}
+.frame nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:#fff}
+.frame nav .right{margin-left:auto;display:flex;align-items:center;gap:12px;font-weight:700}
+.frame nav .go{display:inline-flex;grid-auto-flow:column;align-items:center;gap:10px;font-size:13px}
+.frame nav .go i{width:30px;height:30px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center;font-style:normal;font-size:15px;transition:transform .2s var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.frame nav .go:hover i{transform:translateX(3px)}}
+.frame .foot{position:absolute;left:10px;bottom:22px;width:var(--rail);display:grid;justify-items:center;gap:10px;font-family:var(--f-mono);font-size:10px}
+.frame .foot b{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:400;letter-spacing:.12em}
+.count{font-family:var(--f-mono);font-size:10px;margin-left:5px;border:1px solid #fff;border-radius:9px;padding:0 5px}
+.navbtn{background:none;border:0;color:#fff;font-weight:700;font-size:13px;cursor:pointer;padding:6px 0}
+
+main{position:relative;padding:calc(10px + var(--bar) + 1px) 26px 0 calc(10px + var(--rail) + 30px)}
+
+.spec{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:14px;row-gap:3px;align-items:baseline;margin:0}
+.spec dt{font-family:var(--f-mono);font-size:13px;text-transform:uppercase;text-align:right;letter-spacing:.02em}
+.spec dd{margin:0;font-size:clamp(20px,2.5vw,31px);line-height:1;text-transform:uppercase;letter-spacing:-.015em;font-weight:500;text-wrap:balance;min-width:0}
+.spec .sp{grid-column:1/-1;height:22px}
+.spec.sm dd{font-size:clamp(17px,1.6vw,21px)}
+.spec .name{font-family:var(--f-mono);font-size:clamp(16px,1.6vw,20px);letter-spacing:.06em;font-weight:400}
+
+.hero{min-height:calc(100vh - var(--bar) - 30px);display:grid;place-items:center;padding-block:56px}
+.hero .spec{width:min(780px,100%)}
+.hero h1{margin:0;font:inherit}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero .date{justify-self:end;font-family:var(--f-mono);font-size:13px;margin-right:14%}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:10px 18px;border:1.5px solid var(--k);background:var(--k);color:var(--w);text-decoration:none;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;border-radius:0;transition:transform .14s var(--ease-out),background-color .2s ease,color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--k)}
+.inv .btn{border-color:var(--w);background:var(--w);color:var(--k)}
+.inv .btn.ghost{background:transparent;color:var(--w)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:transparent;color:var(--k)}.btn.ghost:hover{background:var(--k);color:var(--w)}.inv .btn:hover{background:transparent;color:var(--w)}.inv .btn.ghost:hover{background:var(--w);color:var(--k)}}
+.link{background:none;border:0;padding:4px 0;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-family:var(--f-sans)}
+
+.sec{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,.8fr) minmax(0,1.3fr);gap:36px;min-height:120vh;padding-block:70px 60px;border-top:1px solid var(--k)}
+.sec .num{position:sticky;top:calc(var(--bar) + 16vh);align-self:start;font-size:clamp(96px,14vw,210px);font-weight:800;letter-spacing:-.065em;line-height:.78;font-variant-numeric:tabular-nums}
+.sec > .ttl{position:sticky;top:calc(var(--bar) + 16vh);align-self:start;border-top:5px solid var(--k);padding-top:10px}
+.sec > .ttl h2{margin:0;font-size:clamp(22px,2.2vw,30px);line-height:1.02;letter-spacing:-.025em;font-weight:800;text-wrap:balance}
+.sec > .ttl p{margin:8px 0 0;font-size:12.5px;font-weight:600}
+.sec .body{display:grid;gap:34px;align-content:start;padding-top:2px;min-width:0}
+.sec .body > p{margin:0;color:var(--g);font-size:14.5px;max-width:46ch}
+
+.inv{background:var(--k);color:var(--w)}
+.bleed{margin-inline:calc(-1 * (10px + var(--rail) + 30px)) -26px;padding-inline:calc(10px + var(--rail) + 30px) 36px}
+.panel{padding-block:22vh 16vh;display:grid;gap:34px}
+.panel h2{margin:0;font-size:clamp(46px,7.6vw,112px);line-height:.92;letter-spacing:-.05em;font-weight:800}
+.line-mask{display:block;overflow:hidden;padding-bottom:.04em}
+.line-mask > span{display:block;transition:transform .9s var(--ease)}
+.line-mask:nth-child(2) > span{transition-delay:.08s}
+.line-mask:nth-child(3) > span{transition-delay:.16s}
+.js .reveal:not(.in) .line-mask > span{transform:translateY(105%)}
+.note{font-family:var(--f-mono);font-size:12px;color:var(--g);margin:0}
+.inv .note{color:#a9a9a5}
+
+.sheet{position:relative;transform-origin:50% 45%;transform:rotate(var(--tilt,0deg));isolation:isolate}
+.sheet > .shd{position:absolute;inset:4% 3% 0;background:rgba(0,0,0,.5);filter:blur(14px);border-radius:16px;z-index:-1;pointer-events:none;opacity:.42;transform:translateY(6px);will-change:transform,opacity}
+.sheet.live{will-change:transform}
+.glpaper{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:30;pointer-events:none;visibility:hidden}
+.glpaper.on{visibility:visible}
+.sheet.gl > .dk{visibility:hidden}
+.sheet.gl > .shd{opacity:0!important}
+
+.fold{position:absolute;inset:0;perspective:1300px;pointer-events:none;display:none}
+.sheet.folding > .fold{display:block}
+.sheet.folding > .dk{visibility:hidden}
+.fold-in{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 50%}
+.tile{position:absolute;overflow:hidden;transform-origin:50% 50%;will-change:transform;backface-visibility:hidden}
+.tile > .dk{position:absolute;margin:0}
+.tile > .sd{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:9;will-change:opacity}
+.stage{position:relative;height:210vh}
+.stage-in{position:sticky;top:calc(var(--bar) + 26px)}
+.stage .hint{position:absolute;left:0;right:0;top:calc(50% + 120px);text-align:center;font-family:"Caveat",var(--f-pen,cursive);font-size:30px;line-height:1;z-index:5;pointer-events:none;opacity:0;will-change:opacity}
+.stage .hint small{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.stage.folded .stage-in{cursor:pointer}
+.dk{position:relative;background:var(--tex,none) 0 0/640px auto,var(--paper);color:var(--k);padding:22px 26px 20px 22px;
+  -webkit-mask:radial-gradient(circle 3px at 100% 50%,#0000 96%,#000) 0 0/100% 17px repeat-y;mask:radial-gradient(circle 3px at 100% 50%,#0000 96%,#000) 0 0/100% 17px repeat-y}
+.dk > .crum{position:absolute;inset:0;pointer-events:none;background:var(--tex-heavy) 0 0/460px auto;opacity:0;z-index:4;will-change:opacity}
+.dk .hd{display:grid;grid-template-columns:1fr 1.6fr 1fr;min-height:108px}
+.dk .hd > div{border-right:1px solid var(--k);min-width:0}
+.dk .hd > div:last-child{border-right:0}
+.dk .words{position:relative;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.dk .words span{position:absolute}
+.dk .ttl{display:grid;align-content:end;padding:0 14px 10px}
+.dk .ttl b,.dk .ttl h1{margin:0;font-size:20px;letter-spacing:-.02em;text-transform:uppercase;line-height:1;font-weight:800}
+.dk .no{display:grid;place-items:center;font-family:var(--f-mono);font-size:clamp(26px,3vw,34px)}
+.dk .mid{display:grid;grid-template-columns:minmax(0,1fr) 170px;border-top:1px solid var(--k);margin-top:14px}
+.dk .rows > div{display:grid;grid-template-columns:minmax(80px,10ch) minmax(0,1fr);align-items:baseline;gap:10px;border-bottom:1px solid var(--k);padding:7px 0 8px;min-height:38px}
+.dk .lb{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+.dk .vl{font-family:var(--f-mono);font-size:15px;overflow-wrap:anywhere}
+.dk aside{border-left:1px solid var(--k)}
+.dk aside > div{padding:7px 0 8px 10px;border-bottom:1px solid var(--k);display:grid;gap:2px}
+.dk aside .vl{font-size:17px}
+.days{display:grid;grid-template-columns:repeat(var(--n,7),minmax(0,1fr));border:1px solid var(--k);margin-top:12px}
+.days > *{position:relative;text-align:center;padding:8px 0;font-size:12px;font-weight:600;text-transform:uppercase;border-right:1px solid var(--k)}
+.days > *:last-child{border-right:0}
+.days.pick label{cursor:pointer}
+.days.pick input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;width:100%;height:100%}
+.days.pick label:focus-within{outline:2px solid var(--k);outline-offset:-4px}
+.circ{position:absolute;left:50%;top:50%;width:64px;height:42px;transform:translate(-50%,-50%) rotate(-6deg);pointer-events:none;overflow:visible}
+.circ{fill:none;stroke:var(--k);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.circ.anim{animation:draw .55s var(--ease-out) both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.dk .desc{display:grid;grid-template-columns:minmax(0,1fr) 170px;min-height:96px}
+.dk .desc > div:first-child{padding:8px 0 12px;min-width:0}
+.dk .desc > div:last-child{border-left:1px solid var(--k)}
+.dk .desc .vl{display:block;padding:8px 0 0 6ch;line-height:1.6}
+.dk .ft{display:grid;grid-template-columns:minmax(0,1fr) 170px;border-top:1px solid var(--k)}
+.dk .ft .l > div{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--k);padding:7px 0}
+.dk .ft .r{border-left:1px solid var(--k);border-bottom:1px solid var(--k);display:grid;place-items:center;text-align:center;gap:2px;padding:6px}
+.dk .ft .r b{font-size:10.5px;letter-spacing:.24em;font-weight:600;line-height:1.25}
+.sig{width:110px;height:26px}
+.sig{fill:none;stroke:var(--k);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.cells{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--k)}
+.cells > *{flex:1 1 auto;border:0;border-right:1px solid var(--k);padding:9px 12px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;text-align:left;background:transparent;cursor:pointer;text-decoration:none;min-height:42px;display:flex;align-items:center;font-family:var(--f-sans);transition:background-color .2s ease,color .2s ease}
+.cells > *:last-child{border-right:0}
+.cells > span{cursor:default;font-weight:500}
+.cells .primary{background:var(--k);color:var(--paper)}
+@media (hover:hover) and (pointer:fine){.cells button:not(.primary):hover,.cells a:not(.primary):hover{background:var(--k);color:var(--paper)}.cells .primary:hover{background:transparent;color:var(--k)}}
+.stamp{position:absolute;right:34px;top:124px;border:3px double var(--k);padding:6px 14px;font-weight:800;font-size:22px;letter-spacing:.12em;transform:rotate(-9deg);mix-blend-mode:multiply;z-index:3;pointer-events:none}
+.stamp.in{animation:stamp .3s var(--ease-out) both}
+@keyframes stamp{from{transform:rotate(-9deg) scale(1.5);opacity:0}}
+.field input{width:100%;background:transparent;border:0;font-family:var(--f-mono);font-size:15px;padding:0;min-height:26px}
+.field input::placeholder{color:#8a8985}
+.field input:focus{outline:none}
+.rows > div.field:focus-within{box-shadow:inset 0 -2px 0 var(--k)}
+.err{display:block;font-family:var(--f-mono);font-size:12px;min-height:1.3em;margin-top:8px}
+.err:not(:empty)::before{content:"× "}
+.printing .dk{animation:print .75s steps(10,end) both}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+
+.app{display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr);align-content:start;gap:36px;padding-block:44px 120px;min-height:100vh}
+.app > .num{position:sticky;top:calc(var(--bar) + 30px);align-self:start;font-size:clamp(96px,13vw,200px);font-weight:800;letter-spacing:-.065em;line-height:.78}
+.app > .num small{display:block;font-size:12.5px;letter-spacing:0;font-weight:700;margin-top:18px;border-top:5px solid var(--k);padding-top:8px;line-height:1.2}
+.stack{display:grid;gap:44px;align-content:start;min-width:0}
+.two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:36px;align-items:start}
+.table{border-top:1px solid var(--k)}
+.tr{display:grid;grid-template-columns:7ch minmax(0,1fr) 9ch auto;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--k)}
+.tr .t,.tr .c{font-family:var(--f-mono);font-size:12px}
+.tr .n{font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:-.005em;min-width:0}
+.tr .a{font-family:var(--f-mono);font-size:14px;text-align:right;white-space:nowrap}
+.tr.alert .n::before{content:"● "}
+.tr.fresh{animation:print .5s steps(5,end) both}
+.cap{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;margin:0 0 10px;letter-spacing:.04em}
+.big-cta{display:grid;gap:14px;border:1.5px solid var(--k);padding:18px;max-width:540px}
+.big-cta b{font-size:20px;letter-spacing:-.02em;text-transform:uppercase;line-height:1.08}
+.chart{display:block;width:100%;height:auto}
+.chart text{font-family:var(--f-mono);font-size:9.5px;fill:var(--k)}
+.opts{display:inline-flex;gap:10px;font-family:var(--f-mono);font-size:.62em;vertical-align:.12em;letter-spacing:.02em}
+.opts button{position:relative;background:none;border:0;padding:4px 8px;cursor:pointer;text-transform:uppercase}
+.opts button .circ{width:52px;height:34px}
+.auth{min-height:calc(100vh - var(--bar) - 10px);display:grid;place-items:center;padding-block:48px}
+.auth .sheet{width:min(620px,100%)}
+.mapwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--k);margin-top:14px}
+.mapwrap > div{padding:14px 0}
+.mapwrap > div + div{border-left:1px solid var(--k);padding-left:18px;display:grid;align-content:space-between;gap:14px}
+.map{display:block;width:100%;max-width:300px;height:auto;margin:0 auto;overflow:visible}
+.map text{font-family:var(--f-mono);font-size:8.5px;fill:var(--k)}
+.map .pen{font-family:"Caveat",cursive;font-size:19px}
+.map .ping{transform-box:fill-box;transform-origin:center;animation:ping 1.8s var(--ease-out) infinite}
+@keyframes ping{from{transform:scale(.4);opacity:1}to{transform:scale(2.4);opacity:0}}
+.carousel{display:flex;align-items:center;gap:10px}
+.carousel button.arrow{width:38px;height:38px;border:1.5px solid var(--k);background:transparent;cursor:pointer;font-size:16px;display:grid;place-items:center}
+.carousel button.arrow:active{transform:scale(.95)}
+.pager{display:flex;gap:6px}
+.pager span{width:7px;height:7px;border-radius:50%;border:1px solid var(--k)}
+.pager span.on{background:var(--k)}
+.score{display:flex;align-items:baseline;gap:12px;position:relative}
+.score b{font-size:clamp(72px,9vw,124px);font-weight:800;letter-spacing:-.06em;line-height:.8;font-variant-numeric:tabular-nums}
+.score small{font-family:var(--f-mono);font-size:12px;text-transform:uppercase}
+@media (max-width:720px){.mapwrap{grid-template-columns:1fr}.mapwrap > div + div{border-left:0;border-top:1px solid var(--k);padding-left:0}}
+
+.curtain{position:fixed;inset:0;z-index:60;background:var(--k);color:var(--w);transform:translateY(100%);display:grid;place-items:center;pointer-events:none}
+.curtain span{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.topmask{position:fixed;left:0;right:0;top:0;height:calc(10px + var(--bar) + 1px + env(safe-area-inset-top,0px));background:var(--w);z-index:39;pointer-events:none;transition:background-color .25s ease}
+.topmask.dark,body.dark .topmask{background:var(--k)}
+.zoomable{display:block;width:100%;padding:0;margin:0;border:0;background:none;text-align:left;cursor:zoom-in;position:relative;font:inherit;color:inherit}
+.zoomable::after{content:"⤢ Ampliar";position:absolute;right:0;top:-24px;font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;opacity:.55;transition:opacity .2s ease}
+@media (hover:hover) and (pointer:fine){.zoomable:hover::after{opacity:1}.zoomable:hover{outline:1px dashed var(--k);outline-offset:6px}}
+.zoom{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;background:rgba(11,11,11,.72);opacity:0;pointer-events:none;transition:opacity .25s ease}
+.zoom.on{opacity:1;pointer-events:auto}
+.zoom .sheet{width:min(980px,100%);max-height:calc(100vh - 48px);overflow:auto;transform:translateY(16px) rotate(-.6deg) scale(.97);transition:transform .35s var(--ease-out)}
+.zoom.on .sheet{transform:translateY(0) rotate(-.6deg)}
+.zoom .dk{padding:22px 26px 22px}
+.zoom .zbody{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:26px;border-top:1px solid var(--k);margin-top:14px;padding-top:16px}
+.zoom .zbody > div + div{border-left:1px solid var(--k);padding-left:22px}
+.zoom svg.big{display:block;width:100%;height:auto;overflow:visible}
+.zoom svg.big text{font-family:var(--f-mono);font-size:9.5px;fill:var(--k)}
+.zoom .what{font-family:var(--f-mono);font-size:12.5px;line-height:1.6;margin:14px 0 0}
+.zoom .close{position:absolute;right:18px;top:16px;z-index:6;background:var(--k);color:var(--paper);border:0;font-family:var(--f-sans);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:9px 12px;cursor:pointer}
+@media (max-width:720px){.zoom .zbody{grid-template-columns:1fr}.zoom .zbody > div + div{border-left:0;padding-left:0;border-top:1px solid var(--k);padding-top:14px}}
+.toast{position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));z-index:70;transform:translate(-50%,0);display:flex;gap:16px;align-items:center;background:var(--k);color:var(--w);padding:12px 16px;font-family:var(--f-mono);font-size:12.5px;width:max-content;max-width:calc(100% - 40px);transition:transform .3s var(--ease-out),opacity .3s ease;outline:1px solid var(--w)}
+.toast[data-off]{transform:translate(-50%,160%);opacity:0;pointer-events:none}
+.toast button{background:none;border:0;color:var(--w);text-decoration:underline;cursor:pointer;font:inherit;text-transform:uppercase;white-space:nowrap}
+
+@media (max-width:980px){
+  .sec{grid-template-columns:minmax(0,.7fr) minmax(0,1fr);min-height:auto}
+  .sec .body{grid-column:1/-1}
+  .two{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  :root{--rail:0px;--bar:54px}
+  .frame .railline,.frame .foot{display:none}
+  .frame .logo{width:54px}
+  .frame nav{left:70px;right:16px;gap:14px}
+  .frame nav .hide-sm{display:none}
+  main{padding:calc(10px + var(--bar) + 1px) 22px 0 22px}
+  .bleed{margin-inline:-22px;padding-inline:22px}
+  .sec{grid-template-columns:1fr;gap:20px;padding-top:40px}
+  .sec .num,.sec > .ttl{position:static}
+  .app{grid-template-columns:1fr;gap:20px}
+  .app > .num{position:static;font-size:96px}
+  .spec dt{font-size:10.5px}
+  .hero .date{margin-right:0}
+  .dk{padding:18px 18px 16px 16px}
+  .dk .mid,.dk .desc,.dk .ft{grid-template-columns:minmax(0,1fr) 112px}
+  .dk .rows > div{grid-template-columns:1fr;gap:2px}
+  .dk .desc .vl{padding-left:0}
+  .dk .words{display:grid;align-content:center;gap:3px;padding-left:2px}
+  .dk .words span{position:static}
+  .dk aside .vl{font-size:13px}
+  .dk .no{font-size:22px}
+  .dk .ttl b,.dk .ttl h1{font-size:15px}
+  .days > *{font-size:10px}
+  .stamp{top:auto;bottom:150px;right:20px;font-size:17px}
+  .tr{grid-template-columns:6ch minmax(0,1fr) auto}
+  .tr .c{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dk > .crum{display:none}
+  .stage{height:auto}
+  .stage .hint{display:none}
+  .printing .dk,.tr.fresh,.stamp.in,.circ.anim{animation:none}
+  .line-mask > span{transition:none}
+  .js .reveal:not(.in) .line-mask > span{transform:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs id="filters"></defs>
+  <symbol id="circ" viewBox="0 0 64 42"><path pathLength="1" d="M35 4 C14 2 3 12 4 22 C5 34 26 40 43 37 C57 34 62 24 58 15 C54 6 39 2 24 6"/></symbol>
+  <symbol id="sig" viewBox="0 0 110 26"><path d="M2 18 C10 18 12 6 16 6 C20 6 17 22 21 22 C25 22 25 8 29 8 C33 8 30 20 34 20 C38 20 40 4 44 4 C48 4 44 24 49 22 C54 20 55 12 60 12 C66 12 62 18 70 16 C80 14 92 14 108 13"/></symbol>
+</svg>
+
+<div class="topmask" id="topmask" aria-hidden="true"></div>
+<div class="frame">
+  <div class="ln lt"></div><div class="ln lb2"></div><div class="ln ll"></div><div class="ln lr"></div><div class="railline"></div><div class="barline"></div>
+  <a class="logo" href="#inicio" id="brandLink" aria-label="Billetera Segura IA, inicio"><span>BS</span></a>
+  <nav id="nav" aria-label="Principal"></nav>
+  <div class="foot" aria-hidden="true"><b>BILLETERA SEGURA IA</b><span>©26</span></div>
+</div>
+
+<main id="main">
+
+<section class="screen" data-screen="inicio" aria-label="Inicio">
+  <div class="hero">
+    <dl class="spec">
+      <dt></dt><dd class="name"><h1>Billetera Segura IA</h1></dd>
+      <span class="sp"></span>
+      <dt>ID</dt><dd>001</dd>
+      <dt>Servicio</dt><dd>/ Te avisamos antes de que tu plata se vaya –</dd>
+      <dt>Billeteras</dt><dd>Nequi / Daviplata / PSE /</dd>
+      <span class="sp"></span>
+      <dt>Método</dt><dd>Aprende cómo pagas / Alerta en menos de 1 s /</dd>
+      <span class="sp"></span>
+      <dt>BOG</dt><dd><div class="cta"><a class="btn" href="#registro">Crear cuenta gratis</a><a class="btn ghost" href="#ingresar">Iniciar sesión</a></div></dd>
+      <span class="sp"></span>
+      <dt></dt><dd class="date mono" id="heroDate" style="font-size:13px">10.10.26</dd>
+    </dl>
+  </div>
+
+  <section class="sec" id="s-como" aria-labelledby="h01">
+    <div class="num" aria-hidden="true">01</div>
+    <div class="ttl"><h2 id="h01">Te avisa al momento</h2><p>Alertas en tiempo real</p></div>
+    <div class="body">
+      <p>Cuando un pago no se parece a ti, te llega una alerta mientras ocurre. No cuando la plata ya salió.</p>
+      <div id="dkDemo1"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s-rutina" aria-labelledby="h02">
+    <div class="num" aria-hidden="true">02</div>
+    <div class="ttl"><h2 id="h02">Aprende cómo pagas</h2><p>Tu rutina, no reglas fijas</p></div>
+    <div class="body">
+      <p>Conoce tus horarios, tus montos de siempre, tu ciudad y tu celular. Lo que se sale de ahí salta a la vista.</p>
+      <dl class="spec sm">
+        <dt>Horario</dt><dd>7 a. m. – 10 p. m. /</dd>
+        <dt>Monto usual</dt><dd>$15.000 – $70.000 /</dd>
+        <dt>Ciudad</dt><dd>Bogotá /</dd>
+        <dt>Celular</dt><dd>Moto G /</dd>
+        <span class="sp"></span>
+        <dt>Fuera de patrón</dt><dd>3:15 a. m. / $200.000 / Barranquilla / Celular nuevo /</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="s-decides" aria-labelledby="h03">
+    <div class="num" aria-hidden="true">03</div>
+    <div class="ttl"><h2 id="h03">Tú decides</h2><p>Un toque para bloquear</p></div>
+    <div class="body">
+      <p>Bloqueas el pago o confirmas que fuiste tú. El dinero no sale y tu billetera queda en pausa hasta que la reactives.</p>
+      <div id="dkDemo3"></div>
+    </div>
+  </section>
+
+  <section class="panel inv bleed reveal" id="s-empezar" aria-labelledby="hFinal">
+    <h2 id="hFinal"><span class="line-mask"><span>Tu plata,</span></span><span class="line-mask"><span>bajo tu</span></span><span class="line-mask"><span>control.</span></span></h2>
+    <div class="cta"><a class="btn" href="#registro">Crear cuenta gratis</a><a class="btn ghost" href="#ingresar">Ya tengo cuenta</a></div>
+    <p class="note">Gratis. No movemos tu dinero: solo miramos y te avisamos.</p>
+  </section>
+  <footer class="inv bleed" style="padding-bottom:70px">
+    <div id="dkFooter" style="max-width:860px"></div>
+  </footer>
+</section>
+
+<section class="screen" data-screen="ingresar" aria-label="Iniciar sesión" hidden>
+  <div class="inv bleed"><div class="auth">
+    <div class="sheet" data-rot="-7">
+      <form class="dk" id="loginForm" novalidate>
+        <div class="hd">
+          <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+          <div class="ttl"><h1 class="dh">Iniciar sesión</h1></div>
+          <div class="no">0001</div>
+        </div>
+        <div class="mid">
+          <div class="rows">
+            <div class="field"><label class="lb" for="phone">Usuario</label><input id="phone" autocomplete="username" value="nico.alvarez" placeholder="Usuario o celular"></div>
+            <div class="field"><label class="lb" for="pin">PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="4" placeholder="4 números" aria-describedby="pinErr"></div>
+          </div>
+          <aside><div><span class="lb">Fecha</span><span class="vl" data-today></span></div><div><span class="lb">Acceso</span><span class="vl">01</span></div></aside>
+        </div>
+        <span class="err" id="pinErr" role="alert"></span>
+        <div class="ft">
+          <div class="l"><div><span class="lb">Instrucciones</span><span class="vl" id="loginMsg" style="font-size:13px">Usuario y PIN, o tu huella</span></div></div>
+          <div class="r"><b>BILLETERA<br>SEGURA</b><svg class="sig" aria-hidden="true"><use href="#sig"/></svg></div>
+        </div>
+        <div class="cells">
+          <button type="submit" class="primary">Entrar</button>
+          <button type="button" id="bio">Entrar con huella</button>
+          <a href="#registro">Crear cuenta</a>
+        </div>
+      </form>
+    </div>
+  </div></div>
+</section>
+
+<section class="screen" data-screen="registro" aria-label="Crear cuenta" hidden>
+  <div class="inv bleed"><div class="auth">
+    <div class="sheet" data-rot="7">
+      <form class="dk" id="regForm" novalidate>
+        <div class="hd">
+          <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+          <div class="ttl"><h1 class="dh">Crear cuenta</h1></div>
+          <div class="no">0002</div>
+        </div>
+        <div class="mid">
+          <div class="rows">
+            <div class="field"><label class="lb" for="rName">Nombre</label><input id="rName" autocomplete="given-name" placeholder="Cómo te llamamos"></div>
+            <div class="field"><label class="lb" for="rPhone">Celular</label><input id="rPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 000 0000"></div>
+            <div class="field"><label class="lb" for="rPin">PIN</label><input id="rPin" type="password" inputmode="numeric" maxlength="4" autocomplete="new-password" placeholder="4 números"></div>
+          </div>
+          <aside><div><span class="lb">Fecha</span><span class="vl" data-today></span></div><div><span class="lb">Costo</span><span class="vl">$0</span></div></aside>
+        </div>
+        <div class="lb" style="margin-top:14px" id="wLbl">Billeteras a proteger (marca una o más)</div>
+        <div class="days pick" role="group" aria-labelledby="wLbl" style="--n:3;margin-top:6px">
+          <label><input type="checkbox" id="wNequi" checked><span>Nequi</span></label>
+          <label><input type="checkbox" id="wDavi" checked><span>Daviplata</span></label>
+          <label><input type="checkbox" id="wPse"><span>PSE</span></label>
+        </div>
+        <div class="desc"><div><span class="lb">Autorización</span>
+          <label class="vl" style="display:flex;gap:10px;align-items:flex-start;padding:8px 0 0;font-size:13px;cursor:pointer"><input type="checkbox" id="rTerms" style="accent-color:#0b0b0b;width:16px;height:16px;margin-top:2px;flex:none">Autorizo revisar mis movimientos para detectar fraude (Ley 1581 de 2012).</label>
+          <span class="err" id="regErr" role="alert"></span></div><div></div></div>
+        <div class="cells" style="border-top:1px solid var(--k)">
+          <button type="submit" class="primary">Crear cuenta</button>
+          <a href="#ingresar">Ya tengo cuenta</a>
+        </div>
+      </form>
+    </div>
+  </div></div>
+</section>
+
+<section class="screen" data-screen="resumen" aria-label="Inicio de tu cuenta" hidden>
+  <div class="app">
+    <div class="num" aria-hidden="true"><span id="pendNum">02</span><small>Por revisar</small></div>
+    <div class="stack">
+      <h1 class="dh sr">Inicio</h1>
+      <dl class="spec" id="homeSpec"></dl>
+      <div id="homeCta"></div>
+      <div class="two">
+        <div><p class="cap">Movimientos recientes <button class="link" type="button" data-sim="0">Simular pago normal</button> <button class="link" type="button" data-sim="1">Simular fraude</button></p><div class="table" id="recent"></div></div>
+        <div><p class="cap">Esta semana</p><dl class="spec sm" id="weekSpec"></dl></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-screen="alertas" aria-label="Alertas" hidden>
+  <div class="app">
+    <div class="num" aria-hidden="true">02<small>Alertas</small></div>
+    <div class="stack">
+      <h1 class="dh cap" style="margin:0">Alertas / revisando en tiempo real /</h1>
+      <div class="sheet" data-rot="-6"><div class="dk">
+        <div class="hd">
+          <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+          <div class="ttl"><b>Alertas de fraude</b><span class="vl" style="font-size:12px;margin-top:6px">(Tiempo real)</span></div>
+          <div class="no" id="mapNo">02</div>
+        </div>
+        <div class="mapwrap">
+          <div><button class="zoomable" type="button" data-zoom="map" aria-label="Ampliar el mapa de alertas"><svg class="map" id="map" viewBox="-10 -10 300 400" role="img" aria-label="Mapa de Colombia con tus pagos de hoy y la alerta seleccionada"></svg></button></div>
+          <div id="mapSide"></div>
+        </div>
+      </div></div>
+      <div id="alertList" class="stack" style="gap:40px"></div>
+      <div><p class="cap">Revisadas</p><div class="table" id="doneList"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-screen="detalle" aria-label="Detalle de la alerta" hidden>
+  <div class="app">
+    <div class="num" aria-hidden="true">02<small id="dSmall">¿Fuiste tú?</small></div>
+    <div class="stack">
+      <h1 class="dh sr">Detalle de la alerta</h1>
+      <a href="#alertas" class="link" style="justify-self:start">← Alertas</a>
+      <div id="dDocket"></div>
+      <div class="sheet" data-rot="7" style="--tilt:.4deg"><div class="dk">
+        <div class="hd">
+          <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+          <div class="ttl"><b>Ubicación del pago</b><span class="vl" style="font-size:12px;margin-top:6px" id="dMapSub"></span></div>
+          <div class="no" id="dMapNo">0315</div>
+        </div>
+        <div class="mapwrap">
+          <div><button class="zoomable" type="button" data-zoom="dmap" aria-label="Ampliar el mapa del pago"><svg class="map" id="dMap" viewBox="-10 -10 300 400" role="img" aria-label="Mapa de Colombia con la ubicación de este pago"></svg></button></div>
+          <div id="dMapSide"></div>
+        </div>
+      </div></div>
+      <div class="two">
+        <div>
+          <p class="cap">IA score</p>
+          <button class="zoomable" type="button" data-zoom="score" aria-label="Ampliar el IA score"><div class="score"><b id="dScore">92 %</b><small id="dScoreTxt">(Alto riesgo)</small></div></button>
+          <p class="cap" style="margin-top:34px">Por qué te avisamos</p><dl class="spec sm" id="dWhy"></dl>
+        </div>
+        <div>
+          <p class="cap">Desviación / monto en el tiempo</p><button class="zoomable" type="button" data-zoom="monto" aria-label="Ampliar la gráfica de montos"><svg class="chart" id="dev" viewBox="0 0 340 170" role="img" aria-label="Montos diarios de los últimos 30 días comparados con este pago"></svg></button>
+          <p class="cap" style="margin-top:26px">Desviación / hora en el tiempo</p><button class="zoomable" type="button" data-zoom="hora" aria-label="Ampliar la gráfica de horas"><svg class="chart" id="dev2" viewBox="0 0 340 130" role="img" aria-label="Hora de tus pagos de los últimos 30 días comparada con este pago"></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-screen="bloquear" aria-label="Bloquear pago" hidden>
+  <div class="app">
+    <div class="num" aria-hidden="true">02<small id="bSmall">Bloquear</small></div>
+    <div class="stack">
+      <h1 class="dh sr">Bloquear pago</h1>
+      <div id="bDocket"></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-screen="ajustes" aria-label="Ajustes" hidden>
+  <div class="app">
+    <div class="num" aria-hidden="true">03<small>Ajustes</small></div>
+    <div class="stack">
+      <h1 class="dh cap" style="margin:0">Ajustes /</h1>
+      <dl class="spec sm" id="setSpec" style="row-gap:14px"></dl>
+      <div><p class="cap">Dispositivos de confianza</p><div class="table" id="devices"></div></div>
+      <button class="btn ghost" type="button" id="logout" style="justify-self:start">Cerrar sesión</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="curtain" id="curtain" aria-hidden="true"><span id="curtainTxt"></span></div>
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zTitle" aria-hidden="true">
+  <div class="sheet"><div class="dk">
+    <button class="close" type="button" id="zClose">Cerrar ✕</button>
+    <div class="hd">
+      <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+      <div class="ttl"><b id="zTitle">Gráfica</b><span class="vl" style="font-size:12px;margin-top:6px" id="zSub"></span></div>
+      <div class="no" id="zNo">0315</div>
+    </div>
+    <div class="zbody"><div id="zFig"></div><div><dl class="spec sm" id="zStats" style="row-gap:6px"></dl><p class="what" id="zWhat"></p></div></div>
+  </div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" data-off><span id="toastText"></span><button id="toastUndo" type="button">Deshacer</button></div>
+
+<script>
+(() => {
+document.documentElement.classList.add('js');
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const fmt = n => '$' + Math.round(n).toLocaleString('es-CO');
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const NS = 'http://www.w3.org/2000/svg';
+const wait = ms => new Promise(r => setTimeout(r, ms));
+function rng(seed){ return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+const now = new Date();
+const dd = n => String(n).padStart(2, '0');
+const shortDate = `${dd(now.getDate())}.${dd(now.getMonth() + 1)}.${String(now.getFullYear()).slice(2)}`;
+const slashDate = `${dd(now.getDate())}/${dd(now.getMonth() + 1)}/${now.getFullYear()}`;
+const DAYS = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+const todayIdx = (now.getDay() + 6) % 7;
+$('#heroDate').textContent = shortDate;
+$$('[data-today]').forEach(e => e.textContent = slashDate);
+
+function crumpled(seed, S, o){
+  const r = rng(seed), H = new Float32Array(S * S);
+  const lowF = (G, A) => { const v = new Float32Array(G * G); for (let i = 0; i < v.length; i++) v[i] = r() * 2 - 1;
+    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) { const fx = x / S * G, fy = y / S * G, x0 = Math.floor(fx), y0 = Math.floor(fy), tx = fx - x0, ty = fy - y0, u = tx * tx * (3 - 2 * tx), w = ty * ty * (3 - 2 * ty);
+      const a = v[y0 % G * G + x0 % G], b = v[y0 % G * G + (x0 + 1) % G], c = v[(y0 + 1) % G * G + x0 % G], d = v[(y0 + 1) % G * G + (x0 + 1) % G];
+      H[y * S + x] += A * ((a + (b - a) * u) * (1 - w) + (c + (d - c) * u) * w); } };
+  lowF(3, S * .05); lowF(7, S * .018);
+  for (let f = 0; f < o.n; f++) {
+    const big = f < o.n * o.big; let px = r() * S, py = r() * S, th = r() * Math.PI;
+    const segs = big ? 2 + (r() * 3 | 0) : 1, w = S * (big ? .03 + r() * .05 : .006 + r() * .018), a = (r() < .55 ? 1 : -1) * (big ? 1 : .55) * (.45 + r() * .55);
+    for (let sg = 0; sg < segs; sg++) {
+      const L = S * (big ? .08 + r() * .14 : .015 + r() * .07), nx = Math.cos(th), ny = Math.sin(th), ext = Math.ceil(L + w), rx = Math.round(px), ry = Math.round(py);
+      for (let yy = -ext; yy <= ext; yy++) { const y = ((ry + yy) % S + S) % S, dy = yy + ry - py;
+        for (let xx = -ext; xx <= ext; xx++) { const dx = xx + rx - px, d = Math.abs(dx * nx + dy * ny); if (d > w) continue;
+          const al = Math.abs(dx * ny - dy * nx); if (al > L) continue; const q = al / L;
+          const fall = 1 - q * q * q; H[y * S + ((rx + xx) % S + S) % S] += a * ((w - d) * o.soft + (d < 1.6 ? (1.6 - d) * o.sharp : 0)) * fall; } }
+      px += Math.sin(th) * L * (r() < .5 ? 1 : -1) * .9; py -= Math.cos(th) * L * .9; th += (r() - .5) * .9;
+    }
+  }
+  const c = document.createElement('canvas'); c.width = c.height = S;
+  const g = c.getContext('2d'), img = g.createImageData(S, S), nr = rng(seed + 3);
+  const lx = -.45, ly = -.6, lz = .66, ln = Math.hypot(lx, ly, lz);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const i = y * S + x, hx = H[y * S + (x + 1) % S] - H[y * S + (x + S - 1) % S], hy = H[((y + 1) % S) * S + x] - H[((y + S - 1) % S) * S + x];
+    const vx = -hx * o.amp, vy = -hy * o.amp, inv = 1 / Math.hypot(vx, vy, 1);
+    let sh = (vx * lx + vy * ly + lz) * inv / ln - lz / ln;
+    sh = sh > 0 ? sh * .55 : sh;
+    const fiber = (nr() - .5) * o.grain + (nr() - .5) * o.grain * .5;
+    let v = o.base + sh * o.gain + fiber; v = v < 0 ? 0 : v > 255 ? 255 : v;
+    const k = i * 4; img.data[k] = v; img.data[k+1] = v; img.data[k+2] = v - 2.5; img.data[k+3] = 255;
+  }
+  g.putImageData(img, 0, 0);
+  const c2 = document.createElement('canvas'); c2.width = c2.height = S; const g2 = c2.getContext('2d'); g2.filter = 'blur(.35px)';
+  for (const ox of [-S, 0, S]) for (const oy of [-S, 0, S]) g2.drawImage(c, ox, oy);
+  return c2.toDataURL('image/png');
+}
+const TEX_URL = crumpled(5, 640, {n:640, big:.14, amp:.48, gain:36, base:246, grain:4, soft:.55, sharp:1.3});
+document.documentElement.style.setProperty('--tex', `url(${TEX_URL})`);
+const HEAVY_URL = TEX_URL;
+document.documentElement.style.setProperty('--tex-heavy', `url(${HEAVY_URL})`);
+
+let target = scrollY, cur = scrollY, smoothing = false;
+if (!reduce && fine) {
+  addEventListener('wheel', e => {
+    if ($('#zoom').classList.contains('on')) return;
+    if (e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (!smoothing) { cur = scrollY; target = scrollY; }
+    target = clamp(target + e.deltaY * (e.deltaMode === 1 ? 32 : 1), 0, max);
+    if (!smoothing) { smoothing = true; requestAnimationFrame(tick); }
+  }, {passive: false});
+}
+function tick(){
+  cur += (target - cur) * .14;
+  if (Math.abs(target - cur) < .5) { cur = target; smoothing = false; }
+  scrollTo(0, cur);
+  if (smoothing) requestAnimationFrame(tick);
+}
+function jumpTo(y){ smoothing = false; cur = target = y; scrollTo(0, y); }
+function glideTo(y){
+  if (reduce || !fine) return jumpTo(y);
+  cur = scrollY; target = clamp(y, 0, document.documentElement.scrollHeight - innerHeight);
+  if (!smoothing) { smoothing = true; requestAnimationFrame(tick); }
+}
+
+const circ = anim => `<svg class="circ${anim ? ' anim' : ''}" aria-hidden="true"><use href="#circ"/></svg>`;
+function docket(o){
+  const pick = i => Array.isArray(o.days) ? o.days.includes(i) : o.days === i;
+  const names = o.dayNames || DAYS;
+  return `<div class="sheet" data-rot="${o.rot || -7}"${o.fold ? ' data-fold="1"' : ''} style="--tilt:${o.tilt || 0}deg"><div class="dk">
+    <div class="hd">
+      <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
+      <div class="ttl">${o.title ? `<b>${o.title}</b>` : ''}</div>
+      <div class="no">${o.no}</div>
+    </div>
+    <div class="mid">
+      <div class="rows">${o.rows.map(([l, v]) => `<div><span class="lb">${l}</span><span class="vl">${v}</span></div>`).join('')}</div>
+      <aside>${o.side.map(([l, v]) => `<div><span class="lb">${l}</span><span class="vl">${v}</span></div>`).join('')}</aside>
+    </div>
+    ${o.days !== undefined ? `<div class="days" style="--n:${names.length}"${o.daysLabel ? ` aria-label="${o.daysLabel}"` : ''}>${names.map((d, i) => `<span>${d}${pick(i) ? circ(o.anim) : ''}</span>`).join('')}</div>` : ''}
+    <div class="desc"><div><span class="lb">${o.descLabel || 'Descripción'}</span><span class="vl">${o.desc}</span></div><div></div></div>
+    <div class="ft"><div class="l">${(o.instr || []).map(([l, v]) => `<div><span class="lb">${l}</span><span class="vl" style="font-size:14px">${v}</span></div>`).join('')}</div>
+      <div class="r"><b>BILLETERA<br>SEGURA</b><svg class="sig" aria-hidden="true"><use href="#sig"/></svg></div></div>
+    ${o.cells ? `<div class="cells">${o.cells}</div>` : ''}
+    ${o.stamp ? `<div class="stamp${o.stampIn ? ' in' : ''}">${o.stamp}</div>` : ''}
+  </div></div>`;
+}
+
+const GLX = null;
+
+function ensureTex(){ return Promise.resolve(); }
+
+let fid = 0; let sheets = [];
+function mountSheets(root){
+  sheets = sheets.filter(s => { const keep = document.contains(s.el); if (!keep && GLX) GLX.free(s.tex); return keep; });
+  $$('.sheet', root).forEach(el => {
+    if (el._m) return; el._m = true; fid++;
+    const dk = el.querySelector(':scope > .dk');
+    if (dk && !dk.querySelector(':scope > .crum')) dk.insertAdjacentHTML('beforeend', '<div class="crum" aria-hidden="true"></div>');
+    el.insertAdjacentHTML('afterbegin', '<div class="shd" aria-hidden="true"></div>');
+    const st = el.closest('.stage'), r = rng(fid * 977 + 13), folds = new Float32Array(64);
+    for (let i = 0; i < 16; i++) { const a = r() * Math.PI; folds.set([Math.cos(a), Math.sin(a), 1.0 + i * .3 + r() * .6, r()], i * 4); }
+    const s = {el, dk, c: -1, forced: null, seed: fid, folds, fold: !!el.dataset.fold, tilt: parseFloat(el.style.getPropertyValue('--tilt')) || 0, rot: (+el.dataset.rot || 8) * 1.6,
+      crum: dk && dk.querySelector(':scope > .crum'), shd: el.firstElementChild, stage: st, hint: st && st.querySelector('.hint')};
+    el._s = s; sheets.push(s);
+    if (el.offsetParent) ensureTex(s);
+  });
+}
+['input', 'change'].forEach(ev => document.addEventListener(ev, e => { const sh = e.target.closest && e.target.closest('.sheet'); if (sh && sh._s) sh._s.dirty = true; }));
+const f2 = n => Math.round(n * 100) / 100;
+function applyC(s, c){
+  c = 0;
+  if (Math.abs(c - s.c) < .002) return;
+  s.c = c;
+  const live = c > .002; if (live !== s.live) { s.live = live; s.el.classList.toggle('live', live); }
+  if (s.hint) s.hint.style.opacity = f2(clamp(c * 2.5 - 1.5));
+  if (s.stage) s.stage.classList.toggle('folded', c > .2);
+  const gl = !!(GLX && s.tex && c > .003);
+  if (gl !== s.glOn) { s.glOn = gl; s.el.classList.toggle('gl', gl); }
+  if (GLX && s.tex) {
+    if (s.dirty && c > 0 && !s.reTex) { s.reTex = true; ensureTex(s, true).then(() => { s.reTex = false; }); }
+    s.el.style.transform = `rotate(${f2(s.tilt)}deg)`;
+    if (s.crum) s.crum.style.opacity = 0;
+    s.shd.style.transform = 'translateY(6px)'; s.shd.style.opacity = .42;
+    return;
+  }
+  s.el.style.transform = `rotate(${f2(s.tilt + c * s.rot)}deg) scale(${f2(1 - c * (s.fold ? .55 : .34))})`;
+  if (s.crum) s.crum.style.opacity = f2(c * 1.1);
+  s.shd.style.transform = `translateY(${f2(6 + c * 20)}px) scale(${f2(1 - c * .3)})`;
+  s.shd.style.opacity = f2(.42 + c * .3);
+}
+let ticking = false, reveals = null;
+function onScroll(){
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    ticking = false; const vh = innerHeight;
+    const plan = [];
+    for (const s of sheets) {
+      if (!s.el.offsetParent) continue;
+      if (!s.texP && GLX) ensureTex(s);
+      if (s.forced !== null) { plan.push([s, s.forced]); continue; }
+      if (reduce) { plan.push([s, 0]); continue; }
+      if (s.stage) {
+        const sr = s.stage.getBoundingClientRect(); if (sr.bottom < -50 || sr.top > vh + 50) continue;
+        plan.push([s, clamp(1 - clamp((90 - sr.top) / Math.max(1, sr.height - vh)) * 1.45)]); continue;
+      }
+      const r = s.el.getBoundingClientRect();
+      if (r.height === 0 || r.bottom < -vh * .5 || r.top > vh * 1.5) continue;
+      const enter = s.fold ? clamp(((r.top + r.bottom) / 2 - vh * .5) / (vh * .42)) : clamp((r.top - vh * .74) / (vh * .3));
+      const leave = clamp((vh * .26 - r.bottom) / (vh * .34));
+      plan.push([s, Math.max(enter, leave)]);
+    }
+    const barB = 10 + parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar')) + 1;
+    let darkTop = false; for (const el of $$('.screen:not([hidden]) .inv')) { const r = el.getBoundingClientRect(); if (r.top < barB && r.bottom > 0) { darkTop = true; break; } }
+    if (!reveals) reveals = $$('.reveal');
+    const rv = reveals.filter(el => !el.classList.contains('in') && (r => r.top < vh * .78 && r.bottom > 0)(el.getBoundingClientRect()));
+    for (const [s, c] of plan) applyC(s, c);
+    rv.forEach(el => el.classList.add('in'));
+    $('#topmask').classList.toggle('dark', darkTop);
+    if (GLX) {
+      const list = [];
+      for (const s of sheets) {
+        if (!s.glOn || !s.el.offsetParent) continue;
+        const r = s.dk.getBoundingClientRect(); if (r.bottom < -300 || r.top > vh + 300) continue;
+        list.push({s, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: s.dk.offsetWidth, h: s.dk.offsetHeight});
+      }
+      GLX.draw(list);
+    }
+  });
+}
+addEventListener('scroll', onScroll, {passive: true});
+let rzT; addEventListener('resize', () => { onScroll(); clearTimeout(rzT); rzT = setTimeout(() => { sheets.forEach(s => { if (s.el.offsetParent) ensureTex(s, true); }); }, 250); });
+function animateC(s, from, to, ms){
+  return new Promise(res => {
+    if (reduce) { s.forced = to; applyC(s, to); return res(); }
+    const t0 = performance.now();
+    const step = t => { const p = clamp((t - t0) / ms), e = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; s.forced = from + (to - from) * e; applyC(s, s.forced); onScroll(); p < 1 ? requestAnimationFrame(step) : res(); };
+    requestAnimationFrame(step);
+  });
+}
+
+const HOME = {code:'BOG', city:'Bogotá'};
+const TX = [
+  {id:'t1', who:'Transferencia a cuenta nueva', canal:'Nequi', amt:200000, h:'03:15', when:'Hoy', city:'Barranquilla', km:700, dev:'Samsung S22, nuevo', m:0, risk:0,
+   reasons:[['Monto', '×{r} lo usual /'], ['Hora', 'Madrugada /'], ['Ubicación', 'Barranquilla, 700 km /'], ['Celular', 'Nunca usado /']]},
+  {id:'t2', who:'Pago en tienda en línea', canal:'PSE', amt:50000, h:'04:02', when:'Hoy', city:'Bogotá', km:0, dev:'Navegador desconocido', m:1, risk:0,
+   reasons:[['Hora', 'Madrugada /'], ['Otra alerta', 'Hace 47 min /'], ['Navegador', 'Desconocido /']]},
+  {id:'t3', who:'Recarga tarjeta de transporte', canal:'Nequi', amt:20000, h:'07:05', when:'Hoy', city:'Bogotá', m:2, risk:0},
+  {id:'t4', who:'Envío a Camila', canal:'Daviplata', amt:15000, h:'08:40', when:'Hoy', city:'Bogotá', m:3, risk:0},
+  {id:'t5', who:'Tienda de barrio', canal:'Nequi', amt:23400, h:'12:10', when:'Ayer', city:'Bogotá', m:4, risk:0},
+  {id:'t6', who:'Domicilio de comida', canal:'Nequi', amt:38900, h:'13:35', when:'Ayer', city:'Bogotá', m:5, risk:0},
+  {id:'t7', who:'Factura de energía', canal:'Daviplata', amt:96700, h:'16:20', when:'Ayer', city:'Bogotá', m:6, risk:0},
+];
+const isAlert = t => t.alerta === true;
+async function analizar(t, ruta){
+  const m = await (await fetch(ruta)).json();
+  const r = await (await fetch('/predict', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(m.features)})).json();
+  Object.assign(t, {risk:r.final_score, rf:r.rf_score, iF:r.if_score, ms:r.latencia_ms, umbral:r.umbral, alerta:r.prediction === 'FRAUDE', clase:m.clase});
+  return t;
+}
+function refrescar(){
+  if (!S.logged) return;
+  ({resumen: renderHome, alertas: renderAlerts, detalle: renderDetail}[current] || (() => {}))();
+  renderNav(current); mountSheets(document);
+}
+const S = {logged:false, name:'', sel:'t1', blocked:new Set(), ok:new Set(), unfolded:new Set(), mapI:0, wallets:{Nequi:true, Daviplata:true, PSE:false},
+  set:{avisos:true, auto:false, noche:true, sens:1},
+  devices:[{id:'d1', name:'Moto G, este celular', last:'Ahora'}, {id:'d2', name:'Portátil, Chrome', last:'Hace 2 días'}]};
+const pending = () => TX.filter(t => isAlert(t) && !S.blocked.has(t.id) && !S.ok.has(t.id));
+const txNo = t => t.h.replace(':', '');
+
+$('#dkDemo1').innerHTML = docket({no:'0315', title:'¿Fuiste tú?', tilt:1, fold:true,
+  rows:[['Movimiento', 'Transferencia a cuenta nueva'], ['Ubicación', 'Barranquilla, 700 km de ti'], ['Celular', 'Samsung S22, nuevo']],
+  side:[['Fecha', slashDate], ['Monto', '$200.000']], days: todayIdx,
+  desc:'Un pago de madrugada, desde otra ciudad<br>y un celular que nunca habías usado.',
+  instr:[['Hora', '03:15 a. m.'], ['Riesgo', 'Alto']],
+  cells:'<span>No fui yo</span><span>Sí, fui yo</span><span>Nequi</span>'});
+$('#dkDemo3').innerHTML = docket({no:'0316', title:'Comprobante', tilt:-1, rot:8, fold:true,
+  rows:[['Movimiento', 'Transferencia a cuenta nueva'], ['Resultado', 'Bloqueado por ti'], ['Billetera', 'Nequi, en pausa 24 h']],
+  side:[['Fecha', slashDate], ['Salió', '$0']], days: todayIdx,
+  desc:'Tu dinero no salió de la cuenta.<br>Reactiva tu billetera con tu PIN.',
+  instr:[['Protegido', '$200.000']], stamp:'BLOQUEADO'});
+$('#dkFooter').innerHTML = docket({no:'2026', rot:5,
+  rows:[['Nombre', 'Billetera Segura IA'], ['Dirección', 'Bogotá, Colombia']],
+  side:[['Fecha', slashDate], ['Costo', '$0']], days:[0, 1, 2, 3, 4, 5, 6], daysLabel:'Vigilancia todos los días',
+  desc:'Protección contra fraude para tus billeteras<br>digitales. Vigilamos todos los días.',
+  instr:[['Horario', '24 / 7']],
+  cells:'<a href="#s-como">Cómo funciona</a><a href="#ingresar">Iniciar sesión</a><a href="#registro">Crear cuenta</a>'});
+
+const APP = ['resumen', 'alertas', 'detalle', 'bloquear', 'ajustes'];
+const SECTIONS = ['s-como', 's-rutina', 's-decides', 's-empezar'];
+const LABEL = {inicio:'Inicio', ingresar:'Acceso / 0001', registro:'Cuenta nueva / 0002', resumen:'01 / Inicio', alertas:'02 / Alertas', detalle:'02 / Detalle', bloquear:'02 / Bloquear', ajustes:'03 / Ajustes'};
+function renderNav(name){
+  const n = pending().length;
+  const a = (href, num, txt, cur, cls = '') => `<a href="#${href}" class="${cls}"${cur ? ' aria-current="page"' : ''}><small>${num}</small>${txt}</a>`;
+  $('#brandLink').href = S.logged ? '#resumen' : '#inicio';
+  $('#nav').innerHTML = S.logged
+    ? a('resumen', '01.', 'Inicio', name === 'resumen') + a('alertas', '02.', `<span>Alertas${n ? `<span class="count">${n}</span>` : ''}</span>`, ['alertas', 'detalle', 'bloquear'].includes(name)) + a('ajustes', '03.', 'Ajustes', name === 'ajustes')
+      + `<span class="right"><button class="navbtn" type="button" id="navOut">Salir</button></span>`
+    : (name === 'inicio'
+      ? a('s-como', '01.', 'Avisos', false, 'hide-sm') + a('s-rutina', '02.', 'Tu rutina', false, 'hide-sm') + a('s-decides', '03.', 'Tú decides', false, 'hide-sm')
+      : a('inicio', '←', 'Volver', false))
+      + `<span class="right"><a class="go" href="#${name === 'ingresar' ? 'registro' : 'ingresar'}">${name === 'ingresar' ? 'Crear cuenta' : 'Iniciar sesión'} <i aria-hidden="true">→</i></a></span>`;
+  const out = $('#navOut'); if (out) out.onclick = logout;
+}
+let current = null, busy = false;
+async function curtain(label, mid){
+  const c = $('#curtain');
+  if (reduce || !current) { await mid(); return; }
+  $('#curtainTxt').textContent = '→ ' + label;
+  c.style.transition = 'transform .45s var(--ease)'; c.style.transform = 'translateY(0)';
+  await wait(470); await mid(); await wait(140);
+  c.style.transform = 'translateY(-100%)'; await wait(470);
+  c.style.transition = 'none'; c.style.transform = 'translateY(100%)';
+}
+async function show(name){
+  if (SECTIONS.includes(name)) {
+    history.replaceState(null, '', '#inicio');
+    if (current !== 'inicio') await show('inicio');
+    glideTo($('#' + name).getBoundingClientRect().top + scrollY - 40);
+    return;
+  }
+  if (!$(`[data-screen="${name}"]`)) name = S.logged ? 'resumen' : 'inicio';
+  if (APP.includes(name) && !S.logged) { $('#loginMsg').textContent = 'Inicia sesión para continuar'; name = 'ingresar'; history.replaceState(null, '', '#ingresar'); }
+  if (!APP.includes(name) && S.logged) { name = 'resumen'; history.replaceState(null, '', '#resumen'); }
+  if (name === current || busy) return;
+  busy = true;
+  const next = $(`[data-screen="${name}"]`);
+  if (current && !reduce) {
+    const prev = $(`[data-screen="${current}"]`);
+    const vis = sheets.filter(s => prev.contains(s.el) && (r => r.bottom > 0 && r.top < innerHeight)(s.el.getBoundingClientRect()));
+
+  }
+  await curtain(LABEL[name] || name, async () => {
+    ({resumen: renderHome, alertas: renderAlerts, detalle: renderDetail, bloquear: renderBlock, ajustes: renderSettings}[name] || (() => {}))();
+    renderNav(name);
+    $$('.screen').forEach(sc => { sc.hidden = sc !== next; });
+    document.body.classList.toggle('dark', name === 'ingresar' || name === 'registro');
+    sheets.forEach(s => { s.forced = null; });
+    mountSheets(next); jumpTo(0);
+    await Promise.race([Promise.all(sheets.filter(s => next.contains(s.el)).map(s => s.texP)), wait(700)]);
+    if (!reduce && current) { next.classList.add('printing'); setTimeout(() => next.classList.remove('printing'), 800); }
+    onScroll();
+  });
+  current = name; busy = false;
+  if (name !== 'inicio') { const h = next.querySelector('.dh'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll: true}); } }
+}
+addEventListener('hashchange', () => show(location.hash.slice(1) || 'inicio'));
+
+let toastT;
+function toast(msg, undo){
+  const tt = $('#toast'), u = $('#toastUndo'), hide = () => tt.setAttribute('data-off', '');
+  $('#toastText').textContent = msg; u.hidden = !undo;
+  u.onclick = () => { undo && undo(); hide(); };
+  tt.removeAttribute('data-off'); clearTimeout(toastT); toastT = setTimeout(hide, 6000);
+}
+
+$('#loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!$('#phone').value.trim()) { $('#pinErr').textContent = 'Escribe tu usuario o celular.'; $('#phone').focus(); return; }
+  if (!/^\d{4}$/.test($('#pin').value.trim())) { $('#pinErr').textContent = 'Tu PIN tiene 4 números. Revisa que no tenga letras ni espacios.'; $('#pin').focus(); return; }
+  $('#pinErr').textContent = ''; login(S.name || 'Nico');
+});
+$('#pin').addEventListener('input', () => { $('#pinErr').textContent = ''; });
+$('#bio').addEventListener('click', () => {
+  const b = $('#bio'); b.textContent = 'Leyendo huella…'; b.disabled = true;
+  setTimeout(() => { b.textContent = 'Entrar con huella'; b.disabled = false; login(S.name || 'Nico'); }, 1000);
+});
+$$('#regForm .days.pick input').forEach(inp => {
+  const sp = inp.nextElementSibling; sp.style.position = 'relative'; sp.style.display = 'inline-block'; sp.style.padding = '0 6px';
+  const paint = anim => { sp.querySelector('.circ')?.remove(); if (inp.checked) sp.insertAdjacentHTML('beforeend', circ(anim)); };
+  paint(false); inp.addEventListener('change', () => paint(true));
+});
+$('#regForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = (m, el) => { $('#regErr').textContent = m; el && el.focus(); };
+  const name = $('#rName').value.trim();
+  if (!name) return err('Escribe tu nombre.', $('#rName'));
+  if ($('#rPhone').value.replace(/\D/g, '').length < 10) return err('Escribe un celular de 10 dígitos.', $('#rPhone'));
+  if (!/^\d{4}$/.test($('#rPin').value)) return err('El PIN debe tener 4 números.', $('#rPin'));
+  if (!$('#wNequi').checked && !$('#wDavi').checked && !$('#wPse').checked) return err('Marca al menos una billetera.');
+  if (!$('#rTerms').checked) return err('Necesitamos tu autorización para revisar tus movimientos.', $('#rTerms'));
+  err('');
+  S.wallets = {Nequi: $('#wNequi').checked, Daviplata: $('#wDavi').checked, PSE: $('#wPse').checked};
+  login(name); setTimeout(() => toast('Cuenta creada. Ya cuidamos tus billeteras.'), 1200);
+});
+function login(name){ S.logged = true; S.name = name; $('#pin').value = ''; location.hash = 'resumen'; }
+function logout(){ S.logged = false; location.hash = 'inicio'; setTimeout(() => toast('Cerraste sesión.'), 1200); }
+$('#logout').addEventListener('click', logout);
+
+function row(t, open){
+  const bl = S.blocked.has(t.id), ok = S.ok.has(t.id), al = isAlert(t) && !bl && !ok;
+  const st = bl ? 'Bloqueado' : ok ? 'Fuiste tú' : '';
+  return `<div class="tr${al ? ' alert' : ''}${t.fresh ? ' fresh' : ''}"><span class="t">${t.when === 'Hoy' ? t.h : 'Ayer'}</span>
+    <span class="n">${t.who}${st ? ` <span class="mono" style="font-size:11px;font-weight:400">[${st}]</span>` : ''}${al && open ? ` <button class="link" type="button" data-open="${t.id}">Revisar</button>` : ''}</span>
+    <span class="c">${t.canal}</span><span class="a">${bl ? '<s>' + fmt(t.amt) + '</s>' : '−' + fmt(t.amt)}</span></div>`;
+}
+function renderHome(){
+  const p = pending(), first = (S.name || 'Nico').split(' ')[0];
+  $('#pendNum').textContent = dd(p.length);
+  const on = Object.entries(S.wallets).filter(([, v]) => v).map(([k]) => k);
+  $('#homeSpec').innerHTML = `<dt></dt><dd class="name">${first.toUpperCase()}</dd><span class="sp" style="height:12px"></span>
+    <dt>Estado</dt><dd>/ Protección activa –</dd>
+    <dt>Billeteras</dt><dd>${on.join(' / ')} /</dd>
+    <span class="sp"></span><dt>${HOME.code}</dt><dd class="mono" style="font-size:13px">${shortDate}</dd>`;
+  $('#homeCta').innerHTML = p.length
+    ? `<div class="big-cta"><span class="cap" style="margin:0">Necesita tu respuesta</span><b>${p[0].who}<br>${fmt(p[0].amt)} / ${p[0].h} / ${p[0].city}</b><button class="btn" type="button" data-open="${p[0].id}" style="justify-self:start">Revisar ahora</button></div>`
+    : `<div class="big-cta"><b>Todo en orden.</b><span class="mono" style="font-size:12px">No hay pagos por revisar.</span></div>`;
+  $('#recent').innerHTML = TX.slice(0, 6).map(t => row(t, true)).join('');
+  TX.forEach(t => t.fresh = false);
+  $('#weekSpec').innerHTML = `<dt>Revisados</dt><dd>${40 + TX.length}</dd><dt>Alertas</dt><dd>${dd(TX.filter(isAlert).length)}</dd><dt>Bloqueados</dt><dd>${dd(S.blocked.size)}</dd><span class="sp"></span><dt>Protegido</dt><dd>${fmt(TX.filter(t => S.blocked.has(t.id)).reduce((a, t) => a + t.amt, 0))}</dd>`
+    + Object.entries(S.wallets).filter(([, v]) => !v).map(([k]) => `<span class="sp"></span><dt>${k}</dt><dd><button class="link" type="button" data-connect="${k}">Conectar</button></dd>`).join('');
+}
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-open]'); if (o) { S.sel = o.dataset.open; location.hash = 'detalle'; return; }
+  const c = e.target.closest('[data-connect]'); if (c) { S.wallets[c.dataset.connect] = true; renderHome(); toast(`${c.dataset.connect} conectada.`); }
+});
+
+function alertDocket(t, i){
+  return docket({no: txNo(t), title: '¿Fuiste tú?', rot: i % 2 ? 7 : -7, tilt: i % 2 ? .6 : -.6, fold: true,
+    rows:[['Movimiento', t.who], ['Ubicación', t.city + (t.km ? `, ${t.km} km de ti` : '')], ['Dispositivo', t.dev]],
+    side:[['Fecha', slashDate], ['Monto', fmt(t.amt)]], days: todayIdx,
+    desc: [...(t.reasons || []), ['Patrón conocido', `${Math.round(t.rf * 100)} %`], ['Rareza', `${Math.round(t.iF * 100)} %`]].map(r => r[0] + ': ' + r[1].replace('{r}', '5').replace(' /', '')).join('<br>'),
+    descLabel:'Por qué te avisamos', instr:[['Hora', t.h], ['Riesgo', 'Alto']],
+    cells:`<button type="button" class="primary" data-open="${t.id}">Revisar</button><span>${t.canal}</span>`});
+}
+const COL = 'M86.4 284.9 L77.0 279.7 L66.2 272.4 L59.9 275.9 L41.3 272.9 L35.9 263.4 L31.8 263.8 L9.8 251.2 L6.8 244.4 L15.0 242.7 L14.0 231.7 L19.2 223.7 L30.1 222.3 L39.4 208.4 L47.8 196.9 L39.7 191.7 L43.8 178.9 L38.9 158.8 L43.6 153.0 L40.1 134.4 L31.2 122.7 L34.0 112.0 L41.1 113.6 L45.3 107.0 L40.2 94.1 L42.8 90.8 L54.2 91.5 L70.7 76.2 L79.8 73.8 L80.0 66.6 L84.0 48.0 L96.6 37.8 L110.5 37.4 L112.3 32.8 L129.5 34.6 L146.8 23.5 L155.4 18.6 L166.0 8.0 L173.8 9.3 L179.6 15.1 L175.3 22.5 L161.2 26.2 L155.6 37.2 L147.1 43.5 L140.7 51.7 L138.0 67.4 L131.9 80.3 L143.2 81.7 L146.1 91.8 L150.9 96.7 L152.7 105.5 L150.0 113.7 L150.8 118.3 L156.2 120.1 L161.5 127.8 L189.8 125.7 L202.5 128.5 L218.0 147.4 L226.9 145.1 L242.8 146.2 L255.3 143.7 L263.1 147.5 L259.1 159.3 L254.2 166.7 L252.5 182.5 L256.9 197.1 L263.2 203.7 L263.9 208.6 L252.8 219.5 L260.8 224.4 L266.6 232.1 L273.3 254.0 L269.2 256.7 L264.9 243.8 L258.8 236.8 L251.5 244.4 L208.6 243.9 L208.9 257.6 L221.8 259.9 L221.0 268.3 L216.6 266.1 L204.3 269.7 L204.1 285.7 L213.9 293.7 L217.3 306.3 L216.8 315.8 L206.9 376.2 L195.9 364.5 L189.4 363.9 L203.6 341.6 L186.7 331.3 L173.5 333.1 L165.6 329.3 L153.4 335.2 L137.1 332.4 L124.1 309.3 L113.9 303.7 L106.9 293.3 L92.3 282.9 L86.4 284.9Z';
+const CITY = {'Bogotá':[115.1, 178.0], 'Barranquilla':[99.0, 40.5], 'Medellín':[82.1, 144.1], 'Cali':[60.9, 205.7]};
+const PIN = t => { const c = CITY[t.city] || CITY['Bogotá']; return t.km ? c : [c[0] + 26, c[1] - 30]; };
+function drawMap(svg, list, focus){
+  const [bx, by] = CITY['Bogotá'], r = rng(4);
+  let s = `<path d="${COL}" fill="#0b0b0b" fill-opacity=".04" stroke="#0b0b0b" stroke-width="1.3" stroke-linejoin="round"/>`;
+  s += `<text x="${bx - 30}" y="${by + 16}">BOG</text><text x="${CITY['Medellín'][0] - 30}" y="${CITY['Medellín'][1] + 3}">MDE</text><text x="${CITY['Cali'][0] - 26}" y="${CITY['Cali'][1] + 3}">CLO</text><text x="${CITY['Barranquilla'][0] - 30}" y="${CITY['Barranquilla'][1] + 3}">BAQ</text>`;
+  [CITY['Medellín'], CITY['Cali']].forEach(([x, y]) => { s += `<circle cx="${x}" cy="${y}" r="2" fill="#0b0b0b" fill-opacity=".45"/>`; });
+  for (let k = 0; k < 9; k++) s += `<circle cx="${(bx + (r() - .5) * 12).toFixed(1)}" cy="${(by + (r() - .5) * 12).toFixed(1)}" r="2.6" fill="#0b0b0b"/>`;
+  s += `<text x="${bx - 30}" y="${by + 27}" style="font-size:7.5px">TUS PAGOS</text>`;
+  list.forEach((t, i) => {
+    const [ax, ay] = PIN(t), open = !S.blocked.has(t.id) && !S.ok.has(t.id), n = list.indexOf(t) + 1;
+    s += `<path d="M${bx} ${by} Q ${(bx + ax) / 2 + 34} ${(by + ay) / 2} ${ax} ${ay}" fill="none" stroke="#0b0b0b" stroke-dasharray="3 3"/>`;
+    if (open) s += `<circle class="ping" cx="${ax}" cy="${ay}" r="7" fill="none" stroke="#0b0b0b" stroke-width="1.2"/>`;
+    s += `<circle cx="${ax}" cy="${ay}" r="8" fill="${open ? '#0b0b0b' : '#f3f3f1'}" stroke="#0b0b0b" stroke-width="1.5"/><text x="${ax}" y="${ay + 3}" text-anchor="middle" style="fill:${open ? '#f3f3f1' : '#0b0b0b'};font-size:8.5px">${focus ? '!' : n}</text>`;
+    if (open && (focus || i === 0)) s += `<use href="#circ" x="${ax - 28}" y="${ay - 20}" width="56" height="40" fill="none" stroke="#0b0b0b"/>`;
+  });
+  if (focus) {
+    const [ax, ay] = PIN(list[0]), up = ay < 80, lx = ax + 54, ly = ay + (up ? 50 : -44);
+    s += `<text class="pen" x="${lx}" y="${ly}" transform="rotate(-8 ${lx} ${ly})">¡anomalía!</text><path d="M${lx + 4} ${ly + (up ? -14 : 6)} Q ${lx - 14} ${(ly + ay) / 2} ${ax + 18} ${ay + (up ? 8 : -6)}" fill="none" stroke="#0b0b0b" stroke-width="1.3"/>`;
+  } else {
+    s += `<text class="pen" x="150" y="370" transform="rotate(-5 150 370)">${list.length} anomalías hoy</text>`;
+  }
+  svg.innerHTML = s;
+}
+function renderMap(){
+  const list = TX.filter(isAlert);
+  drawMap($('#map'), list, false);
+  $('#mapNo').textContent = dd(list.length);
+  $('#mapSide').innerHTML = `<div style="display:grid;gap:14px">${list.map((t, i) => {
+    const st = S.blocked.has(t.id) ? 'Bloqueada' : S.ok.has(t.id) ? 'Fuiste tú' : 'Por revisar';
+    return `<dl class="spec sm" style="row-gap:4px;border-bottom:1px solid var(--k);padding-bottom:12px">
+      <dt>${dd(i + 1)}</dt><dd>${t.who} (${t.canal}) /</dd>
+      <dt>Monto</dt><dd>− COP ${fmt(t.amt)} / ${t.h}</dd>
+      <dt>Lugar</dt><dd>${t.city}${t.km ? ` / ${t.km} km` : ' / tu ciudad'}</dd>
+      <dt>Estado</dt><dd>${st} <button class="link" type="button" data-open="${t.id}" style="margin-left:6px;font-size:11px">Ver detalle</button></dd></dl>`; }).join('')}</div>
+    <span class="mono" style="font-size:11px">Revisa cada una para ver su detalle.</span>`;
+}
+function renderDetailMap(t){
+  drawMap($('#dMap'), [t], true);
+  $('#dMapNo').textContent = txNo(t);
+  $('#dMapSub').textContent = t.km ? `(${t.km} km de ti)` : '(tu ciudad)';
+  $('#dMapSide').innerHTML = `<dl class="spec sm" style="row-gap:6px">
+      <dt>Tú estás</dt><dd>Bogotá /</dd>
+      <dt>El pago</dt><dd>${t.city}${t.km ? ` / ${t.km} km` : ''} /</dd>
+      <dt>Hora</dt><dd>${t.h}</dd>
+      <dt>Disp.</dt><dd>${t.dev || 'Moto G, este celular'}</dd></dl>
+    <span class="mono" style="font-size:11px">${t.km ? 'Desde una ciudad donde no estás.' : 'Misma ciudad, pero fuera de tu patrón.'}</span>`;
+}
+function renderAlerts(){
+  renderMap();
+  const p = pending();
+  $('#alertList').innerHTML = p.length ? p.map(alertDocket).join('') : '<p class="mono" style="margin:0;font-size:13px">Nada por revisar. Te avisamos apenas algo no se parezca a ti.</p>';
+  const done = TX.filter(t => isAlert(t) && !p.includes(t));
+  $('#doneList').innerHTML = done.length ? done.map(t => row(t, false)).join('') : '<p class="mono" style="margin:10px 0 0;font-size:12px">Todavía no has revisado alertas.</p>';
+}
+const FEED = [['Pago en panadería', 'Nequi', 8500], ['Envío a mamá', 'Daviplata', 50000], ['Recarga de celular', 'Nequi', 10000], ['Compra en línea', 'PSE', 120000], ['Retiro en corresponsal', 'Daviplata', 300000]];
+let feedI = 0;
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-sim]'); if (!b) return;
+  const [who, canal, amt] = FEED[feedI++ % FEED.length], d = new Date();
+  const t = {id:'f' + feedI, who, canal, amt, h:`${dd(d.getHours())}:${dd(d.getMinutes())}`, when:'Hoy', city:'Bogotá', dev:'Moto G, este celular', risk:0, fresh:true};
+  try { await analizar(t, '/muestra?clase=' + b.dataset.sim); }
+  catch { return toast('No hay conexión con el modelo.'); }
+  TX.unshift(t); refrescar();
+  toast(`Analizado en ${t.ms} ms: riesgo ${Math.round(t.risk * 100)} %${t.alerta ? ', alerta enviada' : ''}.`);
+});
+Promise.all(TX.map(t => analizar(t, '/muestra/' + t.m))).then(refrescar).catch(() => toast('No hay conexión con el modelo.'));
+
+function devChart(t){
+  const svg = $('#dev'), W = 340, H = 170, L = 34, R = 10, T = 14, B = 22, r = rng(t.id.charCodeAt(1) * 97);
+  const days = Array.from({length: 30}, () => 15000 + r() * 55000);
+  const avg = days.reduce((a, b) => a + b) / days.length, max = Math.max(220000, t.amt * 1.1);
+  const x = i => L + i / 30 * (W - L - R), y = v => T + (1 - v / max) * (H - T - B);
+  let s = '';
+  [0, 100000, 200000].forEach(v => { s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#0b0b0b" stroke-opacity=".18"/><text x="${L-6}" y="${y(v)+3}" text-anchor="end">${v ? v/1000 + 'K' : '0'}</text>`; });
+  days.forEach((v, i) => { s += `<rect x="${(x(i) - 2).toFixed(1)}" y="${y(v).toFixed(1)}" width="4" height="${(y(0) - y(v)).toFixed(1)}" fill="#0b0b0b"/>`; });
+  s += `<line x1="${L}" x2="${W-R}" y1="${y(avg)}" y2="${y(avg)}" stroke="#0b0b0b" stroke-dasharray="3 3"/><text x="${L+2}" y="${y(avg)-30}">LO USUAL ${fmt(avg)}</text>`;
+  s += `<rect x="${x(30) - 3.5}" y="${y(t.amt)}" width="7" height="${y(0) - y(t.amt)}" fill="none" stroke="#0b0b0b" stroke-width="1.5"/>`;
+  s += `<use href="#circ" x="${x(30) - 26}" y="${y(t.amt) - 20}" width="52" height="36" fill="none" stroke="#0b0b0b"/>`;
+  s += `<text x="${L}" y="${H-6}">HACE 30 DÍAS</text><text x="${W-R}" y="${H-6}" text-anchor="end">HOY</text>`;
+  svg.innerHTML = s;
+  const sd = Math.sqrt(days.reduce((a, v) => a + (v - avg) ** 2, 0) / days.length);
+  S.stat = {days, avg, sd, max: Math.max(...days), min: Math.min(...days), z: (t.amt - avg) / sd};
+  return avg;
+}
+function hourChart(t){
+  const svg = $('#dev2'), W = 340, H = 130, L = 34, R = 10, T = 10, B = 20, r = rng(t.id.charCodeAt(1) * 53);
+  const x = i => L + i / 30 * (W - L - R), y = h => T + h / 24 * (H - T - B);
+  const hh = +t.h.slice(0, 2) + +t.h.slice(3) / 60;
+  let s = `<rect x="${L}" y="${y(7)}" width="${W - L - R}" height="${y(22) - y(7)}" fill="#0b0b0b" fill-opacity=".06"/>`;
+  [0, 6, 12, 18, 24].forEach(h => { s += `<text x="${L-6}" y="${y(h)+3}" text-anchor="end">${String(h).padStart(2, '0')}H</text>`; });
+  s += `<text x="${W-R}" y="${y(7)+10}" text-anchor="end">TU HORARIO</text>`;
+  const hours = [];
+  for (let i = 0; i < 30; i++) for (let k = 0; k < 2; k++) { const hv = 8 + r() * 13; hours.push(hv); s += `<circle cx="${x(i)}" cy="${y(hv)}" r="2" fill="#0b0b0b"/>`; }
+  S.hours = {hours, hh, early: Math.min(...hours), late: Math.max(...hours), night: hours.filter(v => v < 6 || v > 22).length};
+  s += `<circle cx="${x(30)}" cy="${y(hh)}" r="3.2" fill="none" stroke="#0b0b0b" stroke-width="1.5"/>`;
+  if (hh < 6 || hh > 22) s += `<use href="#circ" x="${x(30) - 24}" y="${y(hh) - 16}" width="48" height="32" fill="none" stroke="#0b0b0b"/>`;
+  s += `<text x="${L}" y="${H-4}">HACE 30 DÍAS</text><text x="${W-R}" y="${H-4}" text-anchor="end">HOY</text>`;
+  svg.innerHTML = s;
+}
+function renderDetail(){
+  const t = TX.find(x => x.id === S.sel) || TX[0], a = isAlert(t), bl = S.blocked.has(t.id), ok = S.ok.has(t.id);
+  const avg = devChart(t), ratio = Math.round(t.amt / avg);
+  $('#dSmall').textContent = bl ? 'Bloqueado' : ok ? 'Fuiste tú' : a ? '¿Fuiste tú?' : 'Detalle';
+  const cells = bl || ok ? `<a href="#alertas" class="primary">Volver a alertas</a><span>${bl ? 'Bloqueado' : 'Confirmado por ti'}</span>`
+    : a ? `<a href="#bloquear" class="primary">No fui yo, bloquear</a><button type="button" id="itWasMe">Sí, fui yo</button>`
+    : `<a href="#resumen" class="primary">Volver</a>`;
+  const lvl = a ? 2 : t.risk > .4 ? 1 : 0;
+  const pinned = false;
+  $('#dDocket').innerHTML = (pinned ? '<div class="stage" id="dStage"><div class="stage-in"><p class="hint" aria-hidden="true">desliza para desdoblar ↓<small>o toca el papel</small></p>' : '') + docket({no: txNo(t), fold: pinned, title: bl ? 'Bloqueado' : ok ? 'Confirmado' : a ? '¿Fuiste tú?' : 'Pago normal',
+    rows:[['Movimiento', t.who], ['Ubicación', t.city + (t.km ? `, ${t.km} km de ti` : '')], ['Dispositivo', t.dev || 'Moto G, este celular']],
+    side:[['Fecha', t.when === 'Hoy' ? slashDate : 'Ayer'], ['Monto', fmt(t.amt)]],
+    days: lvl, dayNames:['Riesgo bajo', 'Medio', 'Alto'], daysLabel:'Nivel de riesgo', anim:true,
+    desc: a ? `Pago de ${t.canal} a las ${t.h}.<br>${bl ? 'Lo bloqueaste. El dinero no salió.' : ok ? 'Confirmaste que fuiste tú.' : 'Si no lo reconoces, bloquéalo.'}` : 'Se parece a tus pagos de siempre.',
+    instr:[['Hora', t.h], ['Billetera', t.canal]], cells, stamp: bl ? 'BLOQUEADO' : ok ? 'FUISTE TÚ' : ''}) + (pinned ? '</div></div>' : '');
+  renderDetailMap(t);
+  $('#dScore').textContent = Math.round(t.risk * 100) + ' %';
+  $('#dScoreTxt').textContent = a ? '(Alto riesgo)' : '(Riesgo bajo)';
+  hourChart(t);
+  const stg = $('#dStage');
+  if (stg) stg.onclick = () => { if (stg.classList.contains('folded')) glideTo(stg.getBoundingClientRect().top + scrollY + stg.offsetHeight - innerHeight * .9); };
+  $('#dWhy').innerHTML = [...(t.reasons || []), ['Patrón conocido', `${Math.round(t.rf * 100)} % /`], ['Rareza', `${Math.round(t.iF * 100)} % /`]].map(([k, v]) => `<dt>${k}</dt><dd>${v.replace('{r}', ratio)}</dd>`).join('');
+  mountSheets($('#dDocket'));
+  const me = $('#itWasMe');
+  if (me) me.onclick = () => {
+    S.ok.add(t.id); S.unfolded.add(t.id); renderDetail(); renderNav('detalle'); onScroll();
+    toast('Listo, lo marcamos como tuyo.', () => { S.ok.delete(t.id); renderDetail(); renderNav('detalle'); onScroll(); });
+  };
+}
+
+function renderBlock(){
+  const t = TX.find(x => x.id === S.sel) || TX[0];
+  if (S.blocked.has(t.id)) return receipt(t, false);
+  $('#bSmall').textContent = 'Bloquear';
+  $('#bDocket').innerHTML = docket({no: txNo(t), title:'Bloquear pago', rot:-8,
+    rows:[['Movimiento', t.who], ['Monto', fmt(t.amt)], ['Billetera', t.canal]],
+    side:[['Fecha', slashDate], ['Hora', t.h]],
+    desc:'¿Deseas bloquear esta transacción<br>y pausar tu cuenta temporalmente?<br>El dinero no sale; la reactivas con tu PIN.',
+    descLabel:'Confirmar acción', instr:[['Confirmación', 'Requerida']],
+    cells:`<button type="button" class="primary" id="doBlock">Sí, bloquear</button><a href="#detalle">Cancelar</a>`});
+  mountSheets($('#bDocket'));
+  $('#doBlock').onclick = async () => {
+    S.blocked.add(t.id); S.unfolded.add(t.id); t.ref = 'BL-' + Math.floor(100000 + Math.random() * 899999);
+    renderNav('bloquear');
+    const s = sheets.find(x => $('#bDocket').contains(x.el));
+    
+    receipt(t, true);
+    const s2 = sheets.find(x => $('#bDocket').contains(x.el));
+    
+    toast('Pago bloqueado.', () => { S.blocked.delete(t.id); renderBlock(); renderNav('bloquear'); onScroll(); });
+  };
+}
+function receipt(t, fresh){
+  $('#bSmall').textContent = 'Comprobante';
+  $('#bDocket').innerHTML = docket({no: t.ref.slice(3, 7), title:'Comprobante', rot:7, fold:true,
+    rows:[['Movimiento', t.who], ['Resultado', 'Bloqueado por ti'], ['Billetera', `${t.canal}, en pausa 24 h`]],
+    side:[['Fecha', slashDate], ['Salió', '$0']], days: todayIdx, anim: fresh,
+    desc:`Tu dinero está a salvo, ${(S.name || 'Nico').split(' ')[0]}.<br>Enviamos el caso a ${t.canal}.<br>ID: ${t.ref}`,
+    instr:[['Protegido', fmt(t.amt)]], stamp:'BLOQUEADO', stampIn: fresh,
+    cells:`<a href="#resumen" class="primary">Volver al inicio</a><a href="#alertas">Ver alertas</a>`});
+  mountSheets($('#bDocket'));
+}
+
+function opts(key, labels, cur, name){
+  return `<span class="opts" role="group" aria-label="${name}">${labels.map((l, i) => `<button type="button" data-set="${key}" data-v="${i}" aria-pressed="${i === cur}">${l}${i === cur ? circ(false) : ''}</button>`).join('')}</span>`;
+}
+function renderSettings(){
+  const b = v => v ? 0 : 1;
+  $('#setSpec').innerHTML = `<dt>Avisos</dt><dd>Al celular / ${opts('avisos', ['Sí', 'No'], b(S.set.avisos), 'Avisos al celular')}</dd>
+    <dt>Bloqueo auto.</dt><dd>Si no respondes en 5 min / ${opts('auto', ['Sí', 'No'], b(S.set.auto), 'Bloqueo automático')}</dd>
+    <dt>Modo noche</dt><dd>12 – 5 a. m. / ${opts('noche', ['Sí', 'No'], b(S.set.noche), 'Modo noche')}</dd>
+    <span class="sp"></span>
+    <dt>Frecuencia</dt><dd>${opts('sens', ['Menos', 'Normal', 'Más'], S.set.sens, 'Qué tan seguido te avisamos')}</dd>`;
+  $('#devices').innerHTML = S.devices.map(d => `<div class="tr"><span class="t">${d.last === 'Ahora' ? 'Ahora' : '2 días'}</span><span class="n">${d.name}</span><span class="c"></span><span class="a">${d.last === 'Ahora' ? 'Este' : `<button class="link" type="button" data-rm="${d.id}">Quitar</button>`}</span></div>`).join('');
+}
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-set]');
+  if (o) {
+    const k = o.dataset.set, v = +o.dataset.v;
+    S.set[k] = k === 'sens' ? v : v === 0;
+    renderSettings();
+    $(`[data-set="${k}"][data-v="${v}"] .circ`)?.classList.add('anim');
+    $(`[data-set="${k}"][data-v="${v}"]`)?.focus();
+    toast('Ajuste guardado.'); return;
+  }
+  const b = e.target.closest('[data-rm]'); if (!b) return;
+  const i = S.devices.findIndex(d => d.id === b.dataset.rm), d = S.devices[i];
+  S.devices.splice(i, 1); renderSettings();
+  toast(`Quitaste ${d.name}.`, () => { S.devices.splice(i, 0, d); renderSettings(); });
+});
+
+const hm = v => `${dd(Math.floor(v))}:${dd(Math.round(v % 1 * 60) % 60)}`;
+let zoomFrom = null;
+function openZoom(kind){
+  const t = TX.find(x => x.id === S.sel) || TX[0], st = S.stat || {}, H = S.hours || {};
+  let title = '', sub = '', fig = '', stats = [], what = '';
+  if (kind === 'monto') {
+    title = 'Desviación / monto'; sub = '(últimos 30 días)';
+    fig = `<svg class="big" viewBox="0 0 340 170">${$('#dev').innerHTML}</svg>`;
+    stats = [['Este pago', fmt(t.amt)], ['Lo usual', fmt(st.avg)], ['Rango', `${fmt(st.min)} – ${fmt(st.max)}`], ['Variación', `± ${fmt(st.sd)}`], ['Desviación', `×${Math.round(t.amt / st.avg)} lo usual`]];
+    what = `Mide cuánto se aleja el monto de tus pagos diarios. Cada barra es un día; la línea punteada es tu promedio. Este pago está ${st.z.toFixed(1).replace('.', ',')} desviaciones estándar por encima de lo normal: menos del 1 % de tus pagos llega tan lejos.`;
+  } else if (kind === 'hora') {
+    title = 'Desviación / hora'; sub = '(últimos 30 días)';
+    fig = `<svg class="big" viewBox="0 0 340 130">${$('#dev2').innerHTML}</svg>`;
+    stats = [['Este pago', t.h], ['Tu horario', `${hm(H.early)} – ${hm(H.late)}`], ['Pagos nocturnos', `${H.night} de ${H.hours.length}`], ['Fuera de patrón', H.hh < 6 || H.hh > 22 ? 'Sí' : 'No']];
+    what = 'Cada punto es un pago tuyo según la hora del día. La franja gris es tu horario habitual. Un pago de madrugada, cuando casi nunca pagas, suma riesgo aunque el monto sea normal.';
+  } else if (kind === 'score') {
+    const rf = t.rf, iF = t.iF, u = t.umbral;
+    title = 'IA score'; sub = `(${Math.round(t.risk * 100)} % de riesgo)`;
+    fig = `<svg class="big" viewBox="0 0 340 150">
+      <text x="0" y="14">MODELO SUPERVISADO / RANDOM FOREST × 0,7</text><rect x="0" y="22" width="320" height="16" fill="none" stroke="#0b0b0b"/><rect x="0" y="22" width="${320 * rf}" height="16" fill="#0b0b0b"/><text x="324" y="34">${(rf * 100).toFixed(0)}</text>
+      <text x="0" y="66">DETECTOR DE ANOMALÍAS / ISOLATION FOREST × 0,3</text><rect x="0" y="74" width="320" height="16" fill="none" stroke="#0b0b0b"/><rect x="0" y="74" width="${320 * iF}" height="16" fill="#0b0b0b"/><text x="324" y="86">${(iF * 100).toFixed(0)}</text>
+      <text x="0" y="118">SCORE FINAL</text><rect x="0" y="126" width="320" height="16" fill="none" stroke="#0b0b0b"/><rect x="0" y="126" width="${320 * t.risk}" height="16" fill="#0b0b0b"/>
+      <line x1="${320 * u}" x2="${320 * u}" y1="120" y2="148" stroke="#0b0b0b" stroke-dasharray="2 2"/><text x="${320 * u - 2}" y="116" text-anchor="end">UMBRAL ${Math.round(u * 100)}</text></svg>`;
+    stats = [['Score', `${Math.round(t.risk * 100)} %`], ['Umbral', `${Math.round(u * 100)} %`], ['Patrón conocido', `${Math.round(rf * 100)} %`], ['Rareza', `${Math.round(iF * 100)} %`], ['Decisión', isAlert(t) ? 'Alerta' : 'Normal'], ['Etiqueta real', t.clase ? 'Fraude' : 'Legítima'], ['Latencia', `${t.ms} ms`]];
+    what = 'El score combina dos modelos: uno que reconoce fraudes que ya se han visto (70 % del peso) y otro que mide qué tan raro es el pago frente a tu historial (30 %). Si el resultado pasa el umbral, te avisamos.';
+  } else if (kind === 'map' || kind === 'dmap') {
+    const list = kind === 'map' ? TX.filter(isAlert) : [t];
+    title = kind === 'map' ? 'Mapa de alertas' : 'Ubicación del pago'; sub = kind === 'map' ? `(${list.length} anomalías hoy)` : (t.km ? `(${t.km} km de ti)` : '(tu ciudad)');
+    fig = `<svg class="big map" viewBox="-10 -10 300 400" style="max-width:420px;margin:0 auto">${$(kind === 'map' ? '#map' : '#dMap').innerHTML}</svg>`;
+    stats = kind === 'map'
+      ? list.flatMap((a, i) => [[dd(i + 1), `${a.city}${a.km ? ` / ${a.km} km` : ''}`], ['Monto', `${fmt(a.amt)} / ${a.h}`]])
+      : [['Tú estás', 'Bogotá'], ['El pago', t.city], ['Distancia', t.km ? `${t.km} km` : '0 km'], ['Ciudades usuales', 'Bogotá']];
+    what = kind === 'map' ? 'Cada pin es una alerta de hoy, unida con una línea a la ciudad donde haces tus pagos. Los puntos en Bogotá son tus pagos normales.' : 'Comparamos la ubicación del pago con las ciudades donde sueles pagar. Un pago a cientos de kilómetros de donde estás es una señal fuerte de suplantación.';
+  }
+  $('#zTitle').textContent = title; $('#zSub').textContent = sub; $('#zNo').textContent = txNo(t);
+  $('#zFig').innerHTML = fig;
+  $('#zStats').innerHTML = stats.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('#zWhat').textContent = what;
+  const z = $('#zoom'); z.classList.add('on'); z.setAttribute('aria-hidden', 'false');
+  zoomFrom = document.activeElement; $('#zClose').focus();
+}
+function closeZoom(){ const z = $('#zoom'); z.classList.remove('on'); z.setAttribute('aria-hidden', 'true'); zoomFrom && zoomFrom.focus && zoomFrom.focus(); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-zoom]'); if (b) openZoom(b.dataset.zoom); });
+$('#zClose').addEventListener('click', closeZoom);
+$('#zoom').addEventListener('click', e => { if (e.target.id === 'zoom') closeZoom(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && $('#zoom').classList.contains('on')) closeZoom(); });
+$('#zoom').addEventListener('wheel', e => e.stopPropagation(), {passive: true});
+
+mountSheets(document);
+show(location.hash.slice(1) || 'inicio');
+})();
+</script>
+
+</body></html>

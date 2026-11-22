@@ -13,5 +13,8 @@ pip install -r requirements.txt
 3. Ejecuta la interfaz: `streamlit run app/streamlit_app.py`
 4. Ejecuta la API y el prototipo: `uvicorn api.main:app` y abre http://127.0.0.1:8000
 
+## Prototipo
+https://ptia-fraud-detection.onrender.com
+
 ## Video Hito 2
 https://youtu.be/_z1KGsW4crA?si=h9U9kXff_YFIHGVO

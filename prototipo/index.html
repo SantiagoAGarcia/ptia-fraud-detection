@@ -212,7 +212,7 @@ main{position:relative;padding:calc(10px + var(--bar) + 1px) 26px 0 calc(10px + 
 .topmask{position:fixed;left:0;right:0;top:0;height:calc(10px + var(--bar) + 1px + env(safe-area-inset-top,0px));background:var(--w);z-index:39;pointer-events:none;transition:background-color .25s ease}
 .topmask.dark,body.dark .topmask{background:var(--k)}
 .zoomable{display:block;width:100%;padding:0;margin:0;border:0;background:none;text-align:left;cursor:zoom-in;position:relative;font:inherit;color:inherit}
-.zoomable::after{content:"⤢ Ampliar";position:absolute;right:0;top:-24px;font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;opacity:.55;transition:opacity .2s ease}
+.zoomable::after{content:"Ampliar";position:absolute;right:0;top:-24px;font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;opacity:.55;transition:opacity .2s ease}
 @media (hover:hover) and (pointer:fine){.zoomable:hover::after{opacity:1}.zoomable:hover{outline:1px dashed var(--k);outline-offset:6px}}
 .zoom{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;background:rgba(11,11,11,.72);opacity:0;pointer-events:none;transition:opacity .25s ease}
 .zoom.on{opacity:1;pointer-events:auto}
@@ -513,7 +513,7 @@ main{position:relative;padding:calc(10px + var(--bar) + 1px) 26px 0 calc(10px + 
 <div class="curtain" id="curtain" aria-hidden="true"><span id="curtainTxt"></span></div>
 <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zTitle" aria-hidden="true">
   <div class="sheet"><div class="dk">
-    <button class="close" type="button" id="zClose">Cerrar ✕</button>
+    <button class="close" type="button" id="zClose">Cerrar</button>
     <div class="hd">
       <div class="words" aria-hidden="true"><span style="left:34%;top:30%">Billetera</span><span style="left:6%;top:62%">Segura</span><span style="left:52%;top:62%">IA</span></div>
       <div class="ttl"><b id="zTitle">Gráfica</b><span class="vl" style="font-size:12px;margin-top:6px" id="zSub"></span></div>

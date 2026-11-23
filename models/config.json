@@ -1,0 +1,7 @@
+{
+  "w_rf": 0.9,
+  "w_if": 0.1,
+  "threshold": 0.467312,
+  "objective": "f1",
+  "tuned_on": "validation"
+}

@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\hline
+Modelo & TP & FP & FN & TN \\
+\hline
+Regla fija (monto > 2000 o madrugada) & 23 & 4992 & 75 & 51872 \\
+IF solo & 34 & 65 & 64 & 56799 \\
+RF solo & 82 & 16 & 16 & 56848 \\
+Ensemble original (0.7/0.3, u=0.85) & 48 & 10 & 50 & 56854 \\
+Ensemble ajustado (0.9/0.1, u=0.467) & 82 & 15 & 16 & 56849 \\
+\hline
+\end{tabular}
+\caption{Matriz de confusión en el conjunto de prueba (conteos)}
+\label{tab:confusion}
+\end{table}

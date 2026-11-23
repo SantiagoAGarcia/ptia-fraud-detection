@@ -1,0 +1,5 @@
+{
+  "n_train": 170883,
+  "n_frauds_train": 295,
+  "sklearn_version": "1.9.0"
+}
